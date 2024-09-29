@@ -2,11 +2,10 @@ package utilities
 
 import (
 	"io"
-	"os"
 )
 
 func CountBytes(filename string) (int, error) {
-	file, err := os.Open(filename)
+	file, err := ReadFile(filename)
 	if err != nil {
 		return 0, err
 	}
