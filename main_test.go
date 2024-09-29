@@ -28,3 +28,16 @@ func TestCountLines(t *testing.T) {
 		t.Errorf("Expected %d, got %d", expected, result)
 	}
 }
+
+func TestCountWords(t *testing.T) {
+	expected := 58164
+	result, err := utilities.CountWords("test.txt")
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	if result != expected {
+		t.Errorf("Expected %d, got %d", expected, result)
+	}
+}
