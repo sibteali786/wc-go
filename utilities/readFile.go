@@ -2,9 +2,9 @@ package utilities
 
 import "os"
 
-func ReadFile(filename string) ([]byte, error) {
+func ReadFile(filename string) (*os.File, error) {
 	rootPath, _ := os.Getwd()
-	content, err := os.ReadFile(rootPath + "/" + filename)
+	content, err := os.Open(rootPath + "/" + filename)
 	if err != nil {
 		return nil, err
 	}

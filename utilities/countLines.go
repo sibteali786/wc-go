@@ -2,7 +2,6 @@ package utilities
 
 import (
 	"bufio"
-	"os"
 )
 
 // using splitting technique
@@ -23,8 +22,7 @@ import (
 // since basis upon input stream, is more efficient in terms of large inputs as per memory
 
 func CountLines(filename string) (int, error) {
-	rootPath, _ := os.Getwd()
-	file, err := os.Open(rootPath + "/" + filename)
+	file, err := ReadFile(filename)
 	if err != nil {
 		return 0, err
 	}
