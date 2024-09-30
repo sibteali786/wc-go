@@ -10,7 +10,6 @@ func CountBytes(filename string) (int, error) {
 		return 0, err
 	}
 	defer file.Close()
-
 	// Read the file in chunks
 	buffer := make([]byte, 1024) // Read 1 KB at a time
 	byteCount := 0
