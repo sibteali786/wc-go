@@ -52,3 +52,23 @@ func TestCountCharacters(t *testing.T) {
 		t.Errorf("Expected %d, got %d", expected, result)
 	}
 }
+func TestCountAll(t *testing.T) {
+	expectedLines := 7145
+	expectedWords := 58164
+	expectedBytes := 342190
+	arr, err := utilities.CountAll("test.txt")
+	if err != nil {
+		t.Error(err)
+	}
+	for i, values := range arr {
+		if i == 0 && values != expectedLines {
+			t.Errorf("Expected %d, got %d", expectedLines, values)
+		}
+		if i == 1 && values != expectedWords {
+			t.Errorf("Expected %d, got %d", expectedWords, values)
+		}
+		if i == 2 && values != expectedBytes {
+			t.Errorf("Expected %d, got %d", expectedBytes, values)
+		}
+	}
+}
