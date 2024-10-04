@@ -1,45 +1,31 @@
 package main
 
 import (
-	"os"
 	"testing"
 	"wcgo/utilities"
 )
 
-func TestCountBytes(t *testing.T) {
-	expected := 342190 // bytes of the test.txt file
-	result, err := utilities.CountBytes("test.txt")
-	if err != nil {
-		t.Error(err)
-		return
-	}
-	if result != expected {
-		t.Errorf("Expected %d , got %d", expected, result)
-	}
-}
-
 func TestCountLines(t *testing.T) {
-	expected := 7145
-	file, err := os.Open("test.txt")
-	if err != nil {
-		t.Error(err)
-		return
-	}
+	expected := 7145 // Replace with the actual line count of your test.txt file
+	file := utilities.ReadFile(t, "test.txt")
 	defer file.Close()
 
 	result, err := utilities.CountLines(file)
 	if err != nil {
-		t.Error(err)
-		return
+		t.Fatalf("Error counting lines: %v", err)
 	}
+
 	if result != expected {
-		t.Errorf("Expected %d, got %d", expected, result)
+		t.Errorf("Expected %d lines, but got %d", expected, result)
 	}
 }
 
 func TestCountWords(t *testing.T) {
 	expected := 58164
-	result, err := utilities.CountWords("test.txt")
+	file := utilities.ReadFile(t, "test.txt")
+	defer file.Close()
+
+	result, err := utilities.CountWords(file)
 	if err != nil {
 		t.Error(err)
 		return
@@ -52,7 +38,10 @@ func TestCountWords(t *testing.T) {
 
 func TestCountCharacters(t *testing.T) {
 	expected := 339292
-	result, err := utilities.CountCharacters("test.txt")
+	file := utilities.ReadFile(t, "test.txt")
+	defer file.Close()
+
+	result, err := utilities.CountCharacters(file)
 	if err != nil {
 		t.Error(err)
 	}
@@ -64,7 +53,10 @@ func TestCountAll(t *testing.T) {
 	expectedLines := 7145
 	expectedWords := 58164
 	expectedBytes := 342190
-	arr, err := utilities.CountAll("test.txt")
+	file := utilities.ReadFile(t, "test.txt")
+	defer file.Close()
+
+	arr, err := utilities.CountAll(file)
 	if err != nil {
 		t.Error(err)
 	}

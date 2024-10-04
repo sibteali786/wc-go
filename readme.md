@@ -79,6 +79,14 @@ This output shows:
 - **256** bytes
 - The filename (`example.txt`)
 
+## Test
+
+You can also run the tests by running test command in go
+
+```sh
+$ go test
+```
+
 ## Cross-Platform Compilation
 
 If you need to compile `wcgo` for another platform, you can use Go's cross-compilation capabilities:

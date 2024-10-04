@@ -1,12 +1,14 @@
 package utilities
 
-import "os"
+import (
+	"os"
+	"testing"
+)
 
-func ReadFile(filename string) (*os.File, error) {
-	rootPath, _ := os.Getwd()
-	content, err := os.Open(rootPath + "/" + filename)
+func ReadFile(t *testing.T, filename string) *os.File {
+	file, err := os.Open(filename)
 	if err != nil {
-		return nil, err
+		t.Fatalf("Failed to open file: %v", err)
 	}
-	return content, nil
+	return file
 }
