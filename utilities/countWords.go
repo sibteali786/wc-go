@@ -2,23 +2,16 @@ package utilities
 
 import (
 	"bufio"
+	"io"
 )
 
-func CountWords(filename string) (int, error) {
-	file, err := ReadFile(filename)
-	if err != nil {
-		return 0, nil
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	// Use a split function to split by words
+func CountWords(r io.Reader) (int, error) {
+	scanner := bufio.NewScanner(r)
 	scanner.Split(bufio.ScanWords)
 	wordsCount := 0
 	for scanner.Scan() {
 		wordsCount++
 	}
-	// Check for any scanner errors
 	if err := scanner.Err(); err != nil {
 		return 0, err
 	}

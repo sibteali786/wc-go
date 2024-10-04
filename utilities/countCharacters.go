@@ -1,14 +1,12 @@
 package utilities
 
-import "bufio"
+import (
+	"bufio"
+	"io"
+)
 
-func CountCharacters(filename string) (int, error) {
-	file, err := ReadFile(filename)
-	if err != nil {
-		return 0, err
-	}
-	defer file.Close()
-	scanner := bufio.NewScanner(file)
+func CountCharacters(r io.Reader) (int, error) {
+	scanner := bufio.NewScanner(r)
 	scanner.Split(bufio.ScanRunes)
 	charCount := 0
 	for scanner.Scan() {

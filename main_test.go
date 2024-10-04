@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"testing"
 	"wcgo/utilities"
 )
@@ -19,7 +20,14 @@ func TestCountBytes(t *testing.T) {
 
 func TestCountLines(t *testing.T) {
 	expected := 7145
-	result, err := utilities.CountLines("test.txt")
+	file, err := os.Open("test.txt")
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	defer file.Close()
+
+	result, err := utilities.CountLines(file)
 	if err != nil {
 		t.Error(err)
 		return
