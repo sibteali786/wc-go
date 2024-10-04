@@ -44,7 +44,7 @@ func main() {
 		for i, v := range result {
 			strSlice[i] = strconv.Itoa(v)
 		}
-		if *filePath == "" {
+		if *filePath != "" {
 			strSlice = append(strSlice, *filePath)
 		}
 		fmt.Println(strings.Join(strSlice, " "))
